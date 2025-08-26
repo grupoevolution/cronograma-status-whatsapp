@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronograma Status WhatsApp</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cronograma Status WhatsApp</h1>
+            <div class="status-info">
+                <span id="current-day">Dia: --</span>
+                <span id="current-time">Hora: --:--</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="add-content">
+                <h2>Adicionar Conteúdo</h2>
+                <form id="content-form">
+                    <div class="form-group">
+                        <label for="dia">Dia do Ciclo (1-15):</label>
+                        <select id="dia" required>
+                            <option value="">Selecione o dia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horario">Horário:</label>
+                        <input type="time" id="horario" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo_midia">Tipo de Mídia:</label>
+                        <select id="tipo_midia" required>
+                            <option value="">Selecione o tipo</option>
+                            <option value="img">Somente Imagem</option>
+                            <option value="vid">Somente Vídeo</option>
+                            <option value="texto">Somente Texto</option>
+                            <option value="img_text">Imagem + Texto</option>
+                            <option value="vid_text">Vídeo + Texto</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="url-group">
+                        <label for="url_midia">URL da Mídia:</label>
+                        <input type="url" id="url_midia" placeholder="https://exemplo.com/imagem.jpg">
+                    </div>
+
+                    <div class="form-group" id="text-group">
+                        <label for="texto">Texto do Status:</label>
+                        <textarea id="texto" rows="3" placeholder="Digite o texto do status..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Adicionar ao Cronograma</button>
+                </form>
+            </section>
+
+            <section class="schedule-list">
+                <div class="section-header">
+                    <h2>Cronograma Atual</h2>
+                    <button id="refresh-btn" class="btn-secondary">Atualizar Lista</button>
+                </div>
+                
+                <div class="filters">
+                    <select id="filter-day">
+                        <option value="">Todos os dias</option>
+                    </select>
+                </div>
+
+                <div id="schedule-container">
+                    <div class="loading">Carregando cronograma...</div>
+                </div>
+            </section>
+
+            <section class="test-section">
+                <h2>Teste Manual</h2>
+                <div class="test-controls">
+                    <select id="test-dia">
+                        <option value="">Selecione o dia</option>
+                    </select>
+                    <input type="time" id="test-horario">
+                    <button id="test-trigger" class="btn-warning">Disparar Teste</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Editar Conteúdo</h3>
+            <form id="edit-form">
+                <input type="hidden" id="edit-id">
+                
+                <div class="form-group">
+                    <label for="edit-dia">Dia do Ciclo (1-15):</label>
+                    <select id="edit-dia" required>
+                        <option value="">Selecione o dia</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-horario">Horário:</label>
+                    <input type="time" id="edit-horario" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-tipo_midia">Tipo de Mídia:</label>
+                    <select id="edit-tipo_midia" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="img">Somente Imagem</option>
+                        <option value="vid">Somente Vídeo</option>
+                        <option value="texto">Somente Texto</option>
+                        <option value="img_text">Imagem + Texto</option>
+                        <option value="vid_text">Vídeo + Texto</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="edit-url-group">
+                    <label for="edit-url_midia">URL da Mídia:</label>
+                    <input type="url" id="edit-url_midia" placeholder="https://exemplo.com/imagem.jpg">
+                </div>
+
+                <div class="form-group" id="edit-text-group">
+                    <label for="edit-texto">Texto do Status:</label>
+                    <textarea id="edit-texto" rows="3" placeholder="Digite o texto do status..."></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancel-edit">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
